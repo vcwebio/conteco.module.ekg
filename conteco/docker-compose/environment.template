@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # START SETTINGS elasticsearch.base
-export CONTECO_DC_EKG_ELASTICSEARCH_VOLUMES="'${CONTECO_TYPE}_elasticsearch_volume:/usr/share/elasticsearch/data'"
 export CONTECO_DC_EKG_ELASTICSEARCH_DEPLOY_LABELS=
 export CONTECO_DC_EKG_ELASTICSEARCH_DEPLOY_RESOURCES_LIMITS_CPUS="0.75"
 export CONTECO_DC_EKG_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_CPUS="0.1"
@@ -15,7 +14,6 @@ export CONTECO_DC_EKG_KIBANA_DEPLOY_RESOURCES_LIMITS_MEMORY="256m"
 export CONTECO_DC_EKG_KIBANA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY="128m"
 # END SETTINGS kibana.base
 # START SETTINGS grafana.base
-export CONTECO_DC_EKG_GRAFANA_VOLUMES="'${CONTECO_TYPE}_grafana_volume:/var/lib/grafana'"
 export CONTECO_DC_EKG_GRAFANA_DEPLOY_LABELS=
 export CONTECO_DC_EKG_GRAFANA_DEPLOY_RESOURCES_LIMITS_CPUS="0.75"
 export CONTECO_DC_EKG_GRAFANA_DEPLOY_RESOURCES_RESERVATIONS_CPUS="0.01"
@@ -23,30 +21,30 @@ export CONTECO_DC_EKG_GRAFANA_DEPLOY_RESOURCES_LIMITS_MEMORY="128m"
 export CONTECO_DC_EKG_GRAFANA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY="64m"
 # END SETTINGS grafana.base
 # START SETTINGS nginx.base
-export CONTECO_DC_EXT_ELASTICSEARCH_ENVIRONMENT_CONF_PATH="/conteco/streamsets"
-export CONTECO_DC_EXT_ELASTICSEARCH_ENVIRONMENT_CONF_UPSTREAM="streamsets_base_streamsets:18630"
+export CONTECO_DC_EXT_ELASTICSEARCH_ENVIRONMENT_CONF_PATH="/${CONTECO_TYPE}/conteco_dc_streamsets"
+export CONTECO_DC_EXT_ELASTICSEARCH_ENVIRONMENT_CONF_UPSTREAM="${CONTECO_TYPE}_conteco_dc_streamsets:18630"
 export CONTECO_DC_EXT_ELASTICSEARCH_VOLUMES=
-export CONTECO_DC_EXT_ELASTICSEARCH_DEPLOY_LABELS="traefik.enable=true,traefik.docker.network=conteco_overlay, traefik.http.services.${CONTECO_TYPE}_${CONTECO_NAME}_${CONTECO_TYPE}.loadbalancer.server.port=80, traefik.http.routers.${CONTECO_TYPE}_${CONTECO_NAME}_${CONTECO_TYPE}.entrypoints=conteco, traefik.http.routers.${CONTECO_TYPE}_${CONTECO_NAME}_${CONTECO_TYPE}.rule=PathPrefix(\"/conteco\")"
+export CONTECO_DC_EXT_ELASTICSEARCH_DEPLOY_LABELS="traefik.enable=true,traefik.docker.network=conteco_overlay, traefik.http.services.${CONTECO_TYPE}_conteco_dc_streamsets_${CONTECO_TYPE}.loadbalancer.server.port=80, traefik.http.routers.${CONTECO_TYPE}_conteco_dc_streamsets_${CONTECO_TYPE}.entrypoints=conteco, traefik.http.routers.${CONTECO_TYPE}_conteco_dc_streamsets_${CONTECO_TYPE}.rule=PathPrefix(\"/${CONTECO_TYPE}/conteco_dc_streamsets\")"
 export CONTECO_DC_EXT_ELASTICSEARCH_DEPLOY_RESOURCES_LIMITS_CPUS="0.75"
 export CONTECO_DC_EXT_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_CPUS="0.1"
 export CONTECO_DC_EXT_ELASTICSEARCH_DEPLOY_RESOURCES_LIMITS_MEMORY="128m"
 export CONTECO_DC_EXT_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY="32m"
 # END SETTINGS nginx.base
 # START SETTINGS nginx.base
-export CONTECO_DC_UI_GRAFANA_ENVIRONMENT_CONF_PATH="/conteco/streamsets"
-export CONTECO_DC_UI_GRAFANA_ENVIRONMENT_CONF_UPSTREAM="streamsets_base_streamsets:18630"
+export CONTECO_DC_UI_GRAFANA_ENVIRONMENT_CONF_PATH="/${CONTECO_TYPE}/conteco_dc_streamsets"
+export CONTECO_DC_UI_GRAFANA_ENVIRONMENT_CONF_UPSTREAM="${CONTECO_TYPE}_conteco_dc_streamsets:18630"
 export CONTECO_DC_UI_GRAFANA_VOLUMES=
-export CONTECO_DC_UI_GRAFANA_DEPLOY_LABELS="traefik.enable=true,traefik.docker.network=conteco_overlay, traefik.http.services.${CONTECO_TYPE}_${CONTECO_NAME}_${CONTECO_TYPE}.loadbalancer.server.port=80, traefik.http.routers.${CONTECO_TYPE}_${CONTECO_NAME}_${CONTECO_TYPE}.entrypoints=conteco, traefik.http.routers.${CONTECO_TYPE}_${CONTECO_NAME}_${CONTECO_TYPE}.rule=PathPrefix(\"/conteco\")"
+export CONTECO_DC_UI_GRAFANA_DEPLOY_LABELS="traefik.enable=true,traefik.docker.network=conteco_overlay, traefik.http.services.${CONTECO_TYPE}_conteco_dc_streamsets_${CONTECO_TYPE}.loadbalancer.server.port=80, traefik.http.routers.${CONTECO_TYPE}_conteco_dc_streamsets_${CONTECO_TYPE}.entrypoints=conteco, traefik.http.routers.${CONTECO_TYPE}_conteco_dc_streamsets_${CONTECO_TYPE}.rule=PathPrefix(\"/${CONTECO_TYPE}/conteco_dc_streamsets\")"
 export CONTECO_DC_UI_GRAFANA_DEPLOY_RESOURCES_LIMITS_CPUS="0.75"
 export CONTECO_DC_UI_GRAFANA_DEPLOY_RESOURCES_RESERVATIONS_CPUS="0.1"
 export CONTECO_DC_UI_GRAFANA_DEPLOY_RESOURCES_LIMITS_MEMORY="128m"
 export CONTECO_DC_UI_GRAFANA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY="32m"
 # END SETTINGS nginx.base
 # START SETTINGS nginx.base
-export CONTECO_DC_UI_KIBANA_ENVIRONMENT_CONF_PATH="/conteco/streamsets"
-export CONTECO_DC_UI_KIBANA_ENVIRONMENT_CONF_UPSTREAM="streamsets_base_streamsets:18630"
+export CONTECO_DC_UI_KIBANA_ENVIRONMENT_CONF_PATH="/${CONTECO_TYPE}/conteco_dc_streamsets"
+export CONTECO_DC_UI_KIBANA_ENVIRONMENT_CONF_UPSTREAM="${CONTECO_TYPE}_conteco_dc_streamsets:18630"
 export CONTECO_DC_UI_KIBANA_VOLUMES=
-export CONTECO_DC_UI_KIBANA_DEPLOY_LABELS="traefik.enable=true,traefik.docker.network=conteco_overlay, traefik.http.services.${CONTECO_TYPE}_${CONTECO_NAME}_${CONTECO_TYPE}.loadbalancer.server.port=80, traefik.http.routers.${CONTECO_TYPE}_${CONTECO_NAME}_${CONTECO_TYPE}.entrypoints=conteco, traefik.http.routers.${CONTECO_TYPE}_${CONTECO_NAME}_${CONTECO_TYPE}.rule=PathPrefix(\"/conteco\")"
+export CONTECO_DC_UI_KIBANA_DEPLOY_LABELS="traefik.enable=true,traefik.docker.network=conteco_overlay, traefik.http.services.${CONTECO_TYPE}_conteco_dc_streamsets_${CONTECO_TYPE}.loadbalancer.server.port=80, traefik.http.routers.${CONTECO_TYPE}_conteco_dc_streamsets_${CONTECO_TYPE}.entrypoints=conteco, traefik.http.routers.${CONTECO_TYPE}_conteco_dc_streamsets_${CONTECO_TYPE}.rule=PathPrefix(\"/${CONTECO_TYPE}/conteco_dc_streamsets\")"
 export CONTECO_DC_UI_KIBANA_DEPLOY_RESOURCES_LIMITS_CPUS="0.75"
 export CONTECO_DC_UI_KIBANA_DEPLOY_RESOURCES_RESERVATIONS_CPUS="0.1"
 export CONTECO_DC_UI_KIBANA_DEPLOY_RESOURCES_LIMITS_MEMORY="128m"
