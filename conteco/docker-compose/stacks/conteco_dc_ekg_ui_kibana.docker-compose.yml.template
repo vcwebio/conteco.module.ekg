@@ -22,5 +22,5 @@ services:
       labels: [${CONTECO_DC_EKG_UI_KIBANA_DEPLOY_LABELS}]
 # END SERVICE nginx.rewrite
 
-volumes: {${CONTECO_DC_GLOBAL_VOLUMES}}
+volumes: {}
 networks: {${CONTECO_NETWORKGLOBAL}_overlay: { external: true }, ${CONTECO_NETWORKLOCAL}_overlay: { external: true }}
