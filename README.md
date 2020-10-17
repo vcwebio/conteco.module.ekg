@@ -15,5 +15,5 @@ The module consists of the following stacks:
 
 ## Tags
 
-* 7.8.0 (latest)  
+* 7.9.2 (latest)  
 * 7.1.1
